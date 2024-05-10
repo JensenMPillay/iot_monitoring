@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	gettext \
 	git \
 	libxslt1-dev \
+	libnss3-tools \
 	&& docker-php-ext-install xsl \
     && apt-get remove -y libxslt1-dev icu-devtools libicu-dev libxml2-dev \
 	&& rm -rf /var/lib/apt/lists/*

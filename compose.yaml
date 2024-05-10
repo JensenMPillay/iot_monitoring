@@ -111,9 +111,9 @@ services:
   php-worker:
     depends_on:
       php:
-        condition: service_healthy
+        condition: service_started
       database:
-        condition: service_healthy
+        condition: service_started
     build:
       context: .
       target: frankenphp_base
