@@ -1,6 +1,6 @@
 services:
   php:
-    depends_on: 
+    depends_on:
       - database
     image: ${IMAGES_PREFIX:-}app-php
     container_name: ${COMPOSE_PROJECT_NAME}-php
@@ -92,9 +92,12 @@ services:
 
   ###> phpmyadmin ###
   phpmyadmin:
+    depends_on:
+      - database
     image: phpmyadmin
     container_name: ${COMPOSE_PROJECT_NAME}-phpmyadmin
     restart: on-failure
+    environment:
       PMA_HOST: database
     ports:
       - 8080:80
@@ -109,7 +112,7 @@ services:
     depends_on:
       php:
         condition: service_healthy
-      database: 
+      database:
         condition: service_healthy
     build:
       context: .
