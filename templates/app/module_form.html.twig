@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'tailwind_2_layout.html.twig' %}
+
+{% block body %}
+	{{ form_start(form, {'attr': { 'class': 'flex flex-1 flex-col justify-center items-center space-y-2 md:space-y-4 lg:space-y-6text-center'}}) }}
+	<div class="space-y-2 w-3/4 [&>ul>li]:text-xs">
+		{% if form_label(form.name) %}
+			<p class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize">{{ form_label(form.name) }}</p>
+		{% endif %}
+
+		{% if form_errors(form.name) %}
+			{{ form_errors(form.name, {'attr': { 'class': 'dark:text-red-700 text-xs'}}) }}
+		{% endif %}
+
+		{{ form_widget(form.name, {'attr': { 'class': 'md:w-1/2 flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50', 'placeholder': "Name"}}) }}
+
+		{% if form_help(form.name) %}
+			<small>{{ form_help(form.name, {'attr': { 'class': 'dark:text-zinc-600 text-xs'}}) }}</small>
+		{% endif %}
+
+
+	</div>
+
+	<div class="space-y-2 w-3/4 [&>ul>li]:text-xs">
+		{% if form_label(form.sensorTypes) %}
+			<p class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize">{{ form_label(form.sensorTypes) }}</p>
+		{% endif %}
+
+		{% if form_errors(form.sensorTypes) %}
+			<small>{{ form_errors(form.sensorTypes, {'attr': { 'class': 'dark:text-red-700 text-xs'}}) }}</small>
+		{% endif %}
+
+		{{ form_widget(form.sensorTypes, {'attr': { 'class': 'flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-4 [&>div]:space-x-2 [&>div]:font-semibold'}}) }}
+
+		{% if form_help(form.sensorTypes) %}
+			<small>{{ form_help(form.sensorTypes, {'attr': { 'class': 'dark:text-zinc-600 text-xs'}}) }}</small>
+		{% endif %}
+	</div>
+
+	<div>
+		{{ form_widget(form.save, {'attr': {'class': 'h-10 px-4 py-2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-zinc-950 dark:focus-visible:ring-zinc-300 bg-zinc-900 text-zinc-50 hover:bg-zinc-900/90 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-50/90 capitalize'}}) }}
+	</div>
+
+	{{ form_end(form) }}
+{% endblock %}

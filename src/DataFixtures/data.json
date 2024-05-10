@@ -1,0 +1,53 @@
+{
+  "modules": [
+    {
+      "name": "watch",
+      "createdAt": "2024-04-30T08:00:00Z"
+    },
+    {
+      "name": "phone",
+      "createdAt": "2024-04-30T09:00:00Z"
+    },
+    {
+      "name": "car",
+      "createdAt": "2024-04-30T10:00:00Z"
+    }
+  ],
+  "sensors": [
+    {
+      "type": "temperature",
+      "unit": "celsius",
+      "uptime": "2024-04-30T08:00:00Z",
+      "status": true,
+      "createdAt": "2024-04-30T08:00:00Z"
+    },
+    {
+      "type": "humidity",
+      "unit": "%",
+      "uptime": "2024-04-30T09:15:00Z",
+      "status": true,
+      "createdAt": "2024-04-30T09:15:00Z"
+    },
+    {
+      "type": "light",
+      "unit": "lux",
+      "uptime": "2024-04-30T10:30:00Z",
+      "status": true,
+      "createdAt": "2024-04-30T10:30:00Z"
+    },
+    {
+      "type": "speed",
+      "unit": "km/h",
+      "uptime": "2024-04-30T11:45:00Z",
+      "status": true,
+      "createdAt": "2024-04-30T11:45:00Z"
+    },
+    {
+      "type": "noise",
+      "unit": "dB",
+      "uptime": "2024-04-30T13:00:00Z",
+      "status": true,
+      "createdAt": "2024-04-30T13:00:00Z"
+    }
+  ]
+}

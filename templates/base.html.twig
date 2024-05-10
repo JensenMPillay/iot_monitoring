@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="dark">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}IOT Monitoring
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
+	</head>
+	<body class="min-h-screen w-full antialiased">
+		<header class="flex h-12 w-full flex-row items-center justify-center px-4 capitalize text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+			<h1 class="my-2 sm:my-4 md:my-8">IOT Monitoring Application</h1>
+		</header>
+		<main class="flex min-h-[calc(100vh-9rem)] flex-col justify-center items-center p-2 md:p-4"> {% block body %}{% endblock %}
+			</main>
+			<footer class="flex h-12 w-full flex-row items-center justify-between px-4">
+				<h5>Build By Jensen M.</h5>
+				<span>{{ "now"|date("Y") }}
+					&copy; All Rights Reserved.</span>
+			</footer>
+		</body>
+	</html>
