@@ -17,6 +17,7 @@ import {
 import { cn } from "@/lib/utils";
 import Module from "@/types/Module";
 import { format } from "date-fns";
+import { SettingsIcon, Trash2Icon } from "lucide-react";
 import React from "react";
 import SensorRow from "./SensorRow";
 
@@ -39,15 +40,19 @@ export default function ModuleCard({
         <div className="flex flex-row space-x-2">
           <a
             href={`${window.location.origin}/edit/${module.id}`}
-            className={cn(buttonVariants({ variant: "outline" }))}
+            className={cn(
+              buttonVariants({ variant: "secondary", size: "icon" })
+            )}
           >
-            Edit
+            <SettingsIcon />
           </a>
           <a
             href={`${window.location.origin}/delete/${module.id}`}
-            className={cn(buttonVariants({ variant: "destructive" }))}
+            className={cn(
+              buttonVariants({ variant: "destructive", size: "icon" })
+            )}
           >
-            Delete
+            <Trash2Icon />
           </a>
         </div>
       </CardHeader>

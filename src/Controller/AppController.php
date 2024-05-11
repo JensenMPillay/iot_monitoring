@@ -145,6 +145,7 @@ class AppController extends AbstractController
         for ($i = 0; $i < count($sensors); $i++) {
 
             if (in_array($sensors[$i]->getType(), $sensorTypes)) {
+                $sensors[$i]->setName($sensors[$i]->getType()->value . "_" . $module->getName());
                 $indexSensorType = array_search($sensors[$i]->getType(), $sensorTypes);
                 unset($sensorTypes[$indexSensorType]);
             } else {

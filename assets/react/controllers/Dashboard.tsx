@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { DashboardContext } from "@/context/Contexts";
 import { cn } from "@/lib/utils";
+import { CirclePlusIcon } from "lucide-react";
 import React, { useContext } from "react";
 import ModuleCard from "./ModuleCard";
 
@@ -22,9 +23,9 @@ export default function Dashboard(): React.JSX.Element {
         </div>
         <a
           href={`${window.location.origin}/create`}
-          className={cn(buttonVariants())}
+          className={cn(buttonVariants({ variant: "default", size: "icon" }))}
         >
-          Add
+          <CirclePlusIcon />
         </a>
       </CardHeader>
       <CardContent className="space-y-2 sm:space-y-4 md:space-y-6">

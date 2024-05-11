@@ -29,6 +29,7 @@ A real-time monitoring dashboard for IoT modules.
 -   **Stimulus**: Bundle for building interactive web applications.
 -   **Turbo**: Bundle for speeding up navigation and page loads in web applications.
 -   **Tailwind CSS**: Utility-first CSS framework for building customizable user interfaces.
+-   **Docker**: Platform for developing, shipping, and running applications in containers.
 
 ## Usage
 
