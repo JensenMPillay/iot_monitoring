@@ -47,10 +47,10 @@ RUN install-php-extensions pdo_mysql
 ###< recipes ###
 
 COPY --link frankenphp/conf.d/app.ini $PHP_INI_DIR/conf.d/
-COPY --link --chmod=755 frankenphp/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+COPY --link --chmod=755 frankenphp/docker-franken-php-entrypoint.sh /usr/local/bin/docker-franken-php-entrypoint
 COPY --link frankenphp/Caddyfile /etc/caddy/Caddyfile
 
-ENTRYPOINT ["docker-entrypoint"]
+ENTRYPOINT ["docker-franken-php-entrypoint"]
 
 HEALTHCHECK --start-period=60s CMD curl -f http://localhost:2019/metrics || exit 1
 CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile" ]

@@ -2,7 +2,7 @@
 services:
   php:
     build:
-      context: .
+      context: ./
       target: frankenphp_dev
     environment:
       MERCURE_EXTRA_DIRECTIVES: |
@@ -24,8 +24,4 @@ services:
       - host.docker.internal:host-gateway
     networks:
       - app
-    tty: true
-  node:
-    restart: on-failure
-    command: sh -c "npm install --force && npm run watch"
     tty: true

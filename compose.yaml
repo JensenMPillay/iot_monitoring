@@ -44,11 +44,20 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}-database
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE:-database}
-      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-password}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-password}
       MYSQL_USER: ${MYSQL_USER:-user}
     healthcheck:
-      test: ["CMD", "pg_isready -U ${MYSQL_USER:-user}"]
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "-u$MYSQL_USER",
+          "-p$MYSQL_PASSWORD",
+          "ping",
+          "-h",
+          "localhost",
+        ]
       timeout: 5s
       retries: 5
       start_period: 60s
@@ -69,7 +78,7 @@ services:
     image: node:22-alpine
     container_name: ${COMPOSE_PROJECT_NAME}-node
     working_dir: /app
-    command: sh -c "npm install --force && npm run build"
+    command: sh -c "npm install --force && npm run watch"
     volumes:
       - ./:/app
     networks:
@@ -107,20 +116,19 @@ services:
       - app
   ###< phpmyadmin ###
 
-  ###> php-worker ###
-  php-worker:
+  ###> worker ###
+  worker:
     depends_on:
       php:
         condition: service_started
       database:
         condition: service_started
     build:
-      context: .
+      context: ./
       target: frankenphp_base
-    container_name: ${COMPOSE_PROJECT_NAME}-php-worker
+    container_name: ${COMPOSE_PROJECT_NAME}-worker
     restart: on-failure
     environment:
-      XDEBUG_MODE: "${XDEBUG_MODE:-off}"
       SERVER_NAME: ${SERVER_NAME:-localhost}, php:80
       MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
@@ -135,16 +143,15 @@ services:
         publish_origins *
         demo
         anonymous
-      # See https://xdebug.org/docs/all_settings#mode
     working_dir: /app
-    entrypoint: ["docker-entrypoint-php-worker.sh"]
+    entrypoint: ["docker-worker-entrypoint"]
     volumes:
-      - ./docker-entrypoint-php-worker.sh:/usr/local/bin/docker-entrypoint-php-worker.sh
+      - ./worker/docker-worker-entrypoint.sh:/usr/local/bin/docker-worker-entrypoint
       - ./:/app
     networks:
       - app
     tty: true
-  ###< php-worker ###
+  ###< worker ###
 
 volumes:
   caddy_data:
