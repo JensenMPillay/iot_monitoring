@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div {{ react_component('App', { 'data': data, 'url': mercure('/api') } ) }}>
-		<div class="p-2 bg-gradient-to-tr animate-spin from-zinc-800 to-zinc-800/50 via-zinc-800/10 rounded-full">
+	<div class="flex flex-col flex-1" {{ react_component('App', { 'data': data, 'url': mercure('/api') } ) }}>
+		<div class="p-2 bg-gradient-to-tr animate-spin from-zinc-800 to-zinc-800/50 via-zinc-800/10 rounded-full w-fit place-self-center">
 			<div class="dark:bg-zinc-950 rounded-full">
 				<div class="size-16 sm:size-20 md:size-24 rounded-full"></div>
 			</div>

@@ -15,7 +15,7 @@ import ModuleCard from "./ModuleCard";
 export default function Dashboard(): React.JSX.Element {
   const data = useContext(DashboardContext);
   return (
-    <Card>
+    <Card className="flex-1">
       <CardHeader className="flex flex-row justify-between items-center">
         <div className="flex flex-col">
           <CardTitle>Modules</CardTitle>
