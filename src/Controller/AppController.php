@@ -67,8 +67,10 @@ class AppController extends AbstractController
     }
 
     #[Route('/edit/{id}', name: 'app_edit', requirements: ['id' => Requirement::UUID])]
-    public function edit(Request $request, EntityManagerInterface $entityManager, Module $module): Response
+    public function edit(Request $request, EntityManagerInterface $entityManager, string $id): Response
     {
+        $module = $entityManager->getRepository(Module::class)->find($id);
+
         if (!$module) return $this->redirectToRoute('app');
 
         $form = $this->createForm(ModuleType::class, $module);
@@ -92,8 +94,10 @@ class AppController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'app_delete', requirements: ['id' => Requirement::UUID])]
-    public function delete(EntityManagerInterface $entityManager, Module $module): Response
+    public function delete(EntityManagerInterface $entityManager, string $id): Response
     {
+        $module = $entityManager->getRepository(Module::class)->find($id);
+
         if ($module) {
 
             $entityManager->remove($module);
