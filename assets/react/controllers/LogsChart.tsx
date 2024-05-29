@@ -12,6 +12,7 @@ import {
   Tooltip,
 } from "chart.js";
 import "chartjs-adapter-date-fns";
+import { differenceInHours } from "date-fns";
 import React from "react";
 import { Line } from "react-chartjs-2";
 
@@ -62,12 +63,16 @@ export default function LogsChart({
     },
   } satisfies ChartOptions;
 
+  const lastLogs = logs.filter(
+    (log) => differenceInHours(new Date(), log.createdAt) < 1
+  );
+
   const data = {
-    labels: logs.map((log) => log.createdAt),
+    labels: lastLogs.map((log) => log.createdAt),
     datasets: [
       {
         label: "Value",
-        data: logs.map((log) => Number(log.value)),
+        data: lastLogs.map((log) => Number(log.value)),
         borderColor: "rgb(255, 255, 255)",
         backgroundColor: "rgb(255, 255, 255)",
       },
